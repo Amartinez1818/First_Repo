@@ -102,7 +102,7 @@ titanic %>%
   facet_grid(Sex~Pclass) +
   labs(title = 'Density of People Who Survived Based on Age, Sex, and Class Type')
 
-#boxplot of survival rate based on embarked
+#barplot of survival rate based on embarked
 titanic %>%
   filter(Embarked != "") %>%
   ggplot(aes(Survived)) +
@@ -111,3 +111,13 @@ titanic %>%
   labs( title = 'Amount of People Who Survived Based on Embarked Location',
         subtitle = 'Note: S = Southampton (First), C = Cherbourg (Second), & Q = Queenstown (Third)',
         caption = '0 = Perished, 1 = Survived')
+
+#boxplot of each class based on fare
+titanic %>%
+  ggplot(aes(x= Pclass, y= Fare)) +
+  geom_boxplot(aes(color= Pclass)) +
+  geom_jitter(width = .2, alpha = .2) +
+  scale_y_continuous(trans = 'log2') +
+  labs(title = "Class Based On How Much Their Fare Was")
+#y coordinate are exponents of 2
+?scale_y_continuou
